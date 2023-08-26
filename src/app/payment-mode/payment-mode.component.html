@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+
+<!-- Header -->
+
+<div class="container" style="width: 70%;">
+    <div class="text-center m-5">
+        <h2 class="m-3">Payment Screen</h2>
+    </div>
+    <div>
+        <div class="bg-info col-6 text-center m-5">
+            <p class="p-1 m-2">Payment Amount <span class="mx-3">$28932</span></p>
+        </div>
+        <!-- form for credit card  -->
+        <div class="vh-100">
+            <form class="needs-validation" novalidate>
+                <!-- Card number -->
+                <div class="mb-3 ">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="number" class="form-control" id="cardNumber" required>
+                    <div class="invalid-feedback">
+                        Card number is required.
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <!-- Expiration date -->
+                    <div class="mb-3 col">
+                        <label class="form-label">Expiration Date</label>
+                        <div class="d-flex">
+                            <input type="month" class="form-control mr-2" required placeholder="month">
+                            <div class="invalid-feedback">
+                                Expiration date is required.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CVV -->
+                    <div class="mb-3 col">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="number" class="form-control" id="cvv" required>
+                        <div class="invalid-feedback">
+                            CVV is required.
+                        </div>
+                    </div>
+    
+                </div>
+                <!-- Card holder name -->
+                <div class="mb-3">
+                    <label for="cardHolderName" class="form-label">Cardholder Name</label>
+                    <input type="text" class="form-control" id="cardHolderName" required>
+                    <div class="invalid-feedback">
+                        Cardholder name is required.
+                    </div>
+                </div>
+    
+                <button type="submit" class="btn btn-primary btn-block col-4">Make Payment</button>
+                <br>
+                <button class="btn link link-danger" routerLink="/payBill">Cancel</button>
+            </form>
+        </div>
+    </div>
+    
+</div>

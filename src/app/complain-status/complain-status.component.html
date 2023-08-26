@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+    <a class="navbar-brand ml-2" routerLink="/userDashboard">Electricity Bill Portal</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/userDashboard">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/payment">Payments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/registerComplain">Register Complaint</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/complainStatus" >Complaint Status</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/updateDetail" >Update Detail</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <button class="btn btn-danger" style="margin-right: 1em;" routerLink="/dashboard">Logout</button>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <div class=" row d-flex justify-content-center align-items-center">
+        <form class="col-8">
+
+            <div class="text-center mb-5">
+                <h2>Complain Status</h2>
+            </div>
+            <div class="form-outline mb-3">
+                <label class="form-label" for="complainNum">Complaint Number</label>
+                <input type="number" id="complainNum" class="form-control" formControlName="complainNum"
+                    placeholder="Enter the complaint id" required />
+            </div>
+            <div class="text-center text-lg-start mt-3 pt-2 text-center row">
+                <button type="reset" class="btn btn-success btn-lg col m-3">Cancel</button>
+                <button type="button" class="btn btn-primary btn-lg col m-3"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="getComplainStatus()"
+                    >Get Complain Status</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="complainDetails.length > 0" class="row m-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Complaint Number</th>
+                <th>Complaint Type</th>
+                <th>Category</th>
+                <th>Contact Person</th>
+                <th>Landmark</th>
+                <th>Consumer Number</th>
+                <th>Problem Description</th>
+                <th>Mobile Number</th>
+                <th>Address</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let complain of complainDetails">
+                <td>{{ complain.complaintNumber }}</td>
+                <td>{{ complain.complaintType }}</td>
+                <td>{{ complain.category }}</td>
+                <td>{{ complain.contactPerson }}</td>
+                <td>{{ complain.landmark }}</td>
+                <td>{{ complain.consNumber }}</td>
+                <td>{{ complain.pblmDes }}</td>
+                <td>{{ complain.mobileNum }}</td>
+                <td>{{ complain.address }}</td>
+                <td>{{complain.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

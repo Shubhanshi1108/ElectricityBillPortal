@@ -1,0 +1,165 @@
+<div class="container py-5">
+  <div class=" row d-flex justify-content-center align-items-center">
+    <form class="col-8" [formGroup]="registrationForm">
+
+      <div class="text-center mb-5">
+        <h2>New Customer Registeration</h2>
+      </div>
+      <div class="form-outline mb-3">
+        <label class="form-label" for="Title">Title</label>
+        <select class="form-select" aria-label="Default select example" id="Title">
+          <option value="1">Mr.</option>
+          <option value="2">Miss.</option>
+          <option value="3">Mrs.</option>
+        </select>
+      </div>
+
+      <!-- Customer Name -->
+      <div class="form-outline mb-3">
+        <label class="form-label" for="custName">Customer Name</label>
+        <input type="text" id="custName" class="form-control form-control-lg" formControlName="customerName"
+          placeholder="Enter Name" />
+        <div
+          *ngIf="registrationForm.get('customerName')?.invalid && (registrationForm.get('customerName')?.dirty || registrationForm.get('customerName')?.touched)"
+          class="text-danger">
+          <div *ngIf="registrationForm.get('customerName')?.hasError('required')">Customer Name is required.</div>
+          <div *ngIf="registrationForm.get('customerName')?.hasError('maxlength')">Customer Name cannot exceed 50
+            characters.</div>
+        </div>
+      </div>
+
+
+      <!-- Email address -->
+      <div class="form-outline mb-3">
+        <label class="form-label" for="emailAdd">Email address</label>
+        <input type="email" id="emailAdd" class="form-control form-control-lg" formControlName="emailAdd"
+          placeholder="Enter a valid email address" />
+        <div
+          *ngIf="registrationForm.get('emailAdd')?.invalid && (registrationForm.get('emailAdd')?.dirty || registrationForm.get('emailAdd')?.touched)"
+          class="text-danger">
+          <div *ngIf="registrationForm.get('emailAdd')?.hasError('required')">Email address is required.</div>
+          <div *ngIf="registrationForm.get('emailAdd')?.hasError('email')">Enter a valid email address.</div>
+        </div>
+      </div>
+
+
+
+      <!-- Mobile number -->
+      <div class="form-outline mb-3">
+        <label class="form-label" for="mobNumber">Mobile Number</label>
+        <input type="number" id="mobNumber" class="form-control form-control-lg" formControlName="mobNumber"
+          placeholder="Enter mobile number" />
+        <div
+          *ngIf="registrationForm.get('mobNumber')?.invalid && (registrationForm.get('mobNumber')?.dirty || registrationForm.get('mobNumber')?.touched)"
+          class="text-danger">
+          <div *ngIf="registrationForm.get('mobNumber')?.hasError('required')">Mobile Number is required.</div>
+          <div *ngIf="registrationForm.get('mobNumber')?.hasError('invalidMobileNumber')">Invalid mobile number format
+            (10 digits required).</div>
+        </div>
+      </div>
+
+      <!-- User ID -->
+      <div class="form-outline mb-3">
+        <label class="form-label" for="userID">User ID</label>
+        <input type="text" id="userID" class="form-control form-control-lg" formControlName="userID"
+          placeholder="Enter unique userid" />
+        <div
+          *ngIf="registrationForm.get('userID')?.invalid && (registrationForm.get('userID')?.dirty || registrationForm.get('userID')?.touched)"
+          class="text-danger">
+          <div *ngIf="registrationForm.get('userID')?.hasError('required')">User ID is required.</div>
+          <div *ngIf="registrationForm.get('userID')?.hasError('minlength')">User ID must have at least 5 characters.
+          </div>
+          <div *ngIf="registrationForm.get('userID')?.hasError('maxlength')">User ID cannot exceed 15 characters.</div>
+        </div>
+      </div>
+
+
+      <!-- Password input -->
+      <div class="form-outline mb-3">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" id="password" class="form-control form-control-lg" formControlName="password"
+          placeholder="Enter password" />
+        <div
+          *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)"
+          class="text-danger">
+          <div *ngIf="registrationForm.get('password')?.hasError('required')">Password is required.</div>
+          <div *ngIf="registrationForm.get('password')?.hasError('maxlength')">Password cannot exceed 30 characters.
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirm Password input -->
+      <div class="form-outline mb-3">
+        <label class="form-label" for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-control form-control-lg"
+          formControlName="confirmPassword" placeholder="Enter password" />
+        <div
+          *ngIf="registrationForm.get('confirmPassword')?.invalid && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)"
+          class="text-danger">
+          <div *ngIf="registrationForm.get('confirmPassword')?.hasError('required')">Confirm Password is required.</div>
+          <div *ngIf="registrationForm.get('confirmPassword')?.hasError('maxlength')">Confirm Password cannot exceed 30
+            characters.</div>
+          <div *ngIf="registrationForm.hasError('passwordMismatch')">Passwords do not match.</div>
+        </div>
+      </div>
+
+
+      <!-- Register Button -->
+      <div class="text-center text-lg-start mt-3 pt-2 text-center row">
+        <button type="reset" class="btn btn-success btn-lg col m-2">Reset</button>
+        <button type="submit" class="btn btn-primary btn-lg col m-2"
+          style="padding-left: 2.5rem; padding-right: 2.5rem;" [disabled]="registrationForm.invalid"
+          (click)="openModal(successModal)">Register</button>
+      </div>
+
+      <p class=" fw-bold mt-3 pt-1 mb-0">Already have an account? <button routerLink="/dashboard"
+          class="btn btn-lg fw-bold link link-danger">Login</button></p>
+
+    </form>
+  </div>
+</div>
+
+<ng-template #successModal>
+  <div class="modal-header">
+    <h4 class="modal-title">Registration Successful</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="text-success">Congratulations! You have successfully registered.</p>
+    <div>
+      <form>
+        <!-- Customer ID -->
+        <div class="row">
+          <label class="form-label col-4 col-form-label" for="custId">Customer Id</label>
+          <div class="col-8">
+            <input type="text" id="custId" class="form-control col-4 form-control-plaintext"
+              formControlName="customerName" readonly />
+          </div>
+
+          <!-- Customer Name -->
+        </div>
+        <div class="row">
+          <label class="form-label col-4 col-form-label" for="custName">Customer Name</label>
+          <div class="col-8">
+            <input type="text" id="custName" class="form-control col-4 form-control-plaintext"
+              formControlName="customerName" readonly />
+          </div>
+        </div>
+
+        <!-- Customer Email -->
+        <div class="row">
+          <label class="form-label col-4 col-form-label" for="emailAdd">Email address</label>
+          <div class="col-8">
+            <input type="email" id="emailAdd" class="form-control form-control-plaintext" formControlName="emailAdd" readonly />
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modalRef?.hide()">Close</button>
+  </div>
+</ng-template>
