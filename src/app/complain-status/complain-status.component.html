@@ -13,10 +13,10 @@
                 <a class="nav-link" routerLink="/registerComplain">Register Complaint</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/complainStatus" >Complaint Status</a>
+                <a class="nav-link" routerLink="/complainStatus">Complaint Status</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/updateDetail" >Update Detail</a>
+                <a class="nav-link" routerLink="/updateDetail">Update Detail</a>
             </li>
         </ul>
     </div>
@@ -40,8 +40,8 @@
             <div class="text-center text-lg-start mt-3 pt-2 text-center row">
                 <button type="reset" class="btn btn-success btn-lg col m-3">Cancel</button>
                 <button type="button" class="btn btn-primary btn-lg col m-3"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="getComplainStatus()"
-                    >Get Complain Status</button>
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="getComplainStatus()">Get Complain
+                    Status</button>
             </div>
         </form>
     </div>
@@ -73,7 +73,7 @@
                 <td>{{ complain.pblmDes }}</td>
                 <td>{{ complain.mobileNum }}</td>
                 <td>{{ complain.address }}</td>
-                <td>{{complain.status}}</td>
+                <td>{{ complain.status }}</td>
             </tr>
         </tbody>
     </table>
