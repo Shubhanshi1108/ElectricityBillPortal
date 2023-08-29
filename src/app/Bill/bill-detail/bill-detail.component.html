@@ -1,0 +1,64 @@
+<app-admin-dashboard></app-admin-dashboard>
+<div class="container py-5">
+    <div>
+        <button class="btn btn-success">Add Bill</button>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center">
+        <form class="col-8">
+            <div class="text-center mb-5">
+                <h2>Bill Detail</h2>
+            </div>
+            <div class="form-outline mb-3">
+                <label class="form-label" for="customerID">Customer ID</label>
+                <input type="number" id="customerID" class="form-control" [(ngModel)]="customerID" name="customerID" placeholder="Enter the Bill ID" required />
+            </div>
+            <div class="justify-content-center mt-3 pt-2 text-center row">
+                <button type="reset" class="btn btn-danger btn-lg col-2 m-3">Cancel</button>
+                <button type="button" class="btn btn-primary btn-lg col-6 m-3"
+                        style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                        (click)="getBillDetail()">Get Bills</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row m-4" *ngIf="customerDetails.length > 0">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Email Address</th>
+                <th>Mobile Number</th>
+                <th>User ID</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customerDetails">
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.mobileNumber }}</td>
+                <td>{{ customer.userId }}</td>
+                <td class="text-center">
+                    <button (click)="updateBill()" class="btn btn-primary col-5 mx-1">Update</button>
+                    <button (click)="deleteBill(customer)" class="btn btn-danger col-5 mx-1">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #successModal>
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Deleted successfully!</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modalRef?.hide()">Close</button>
+    </div>
+</ng-template>
+
