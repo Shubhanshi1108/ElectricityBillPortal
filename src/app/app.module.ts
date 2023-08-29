@@ -13,8 +13,8 @@ import { UserDashboardComponent } from './Logins-&-dashboard/user-dashboard/user
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ComplainStatusComponent } from './Complaint/complain-status/complain-status.component';
-import { PayBillComponent } from './Payment/pay-bill/pay-bill.component';
-import { PaymentComponent } from './Payment/payment/payment.component';
+import { PayBillComponent } from './Customer/pay-bill/pay-bill.component';
+import { PaymentComponent } from './Customer/payment/payment.component';
 import { PaymentModeComponent } from './Customer/payment-mode/payment-mode.component';
 import { UpdateCustomerDetailComponent } from './Customer/update-customer-detail/update-customer-detail.component';
 import { NavbarComponent } from './Logins-&-dashboard/navbar/navbar.component';

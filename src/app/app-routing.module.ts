@@ -8,9 +8,9 @@ import { UserLoginComponent } from './Logins-&-dashboard/user-login/user-login.c
 import { UserDashboardComponent } from './Logins-&-dashboard/user-dashboard/user-dashboard.component';
 import { RegisterComplaintComponent } from './Complaint/register-complaint/register-complaint.component';
 import { ComplainStatusComponent } from './Complaint/complain-status/complain-status.component';
-import { PayBillComponent } from './Payment/pay-bill/pay-bill.component';
+import { PayBillComponent } from './Customer/pay-bill/pay-bill.component';
 import { PaymentModeComponent } from './Customer/payment-mode/payment-mode.component';
-import { PaymentComponent } from './Payment/payment/payment.component';
+import { PaymentComponent } from './Customer/payment/payment.component';
 import { AddBillComponent } from './Bill/add-bill/add-bill.component';
 import { UpdateBillComponent } from './Bill/update-bill/update-bill.component';
 import { NavbarComponent } from './Logins-&-dashboard/navbar/navbar.component';
