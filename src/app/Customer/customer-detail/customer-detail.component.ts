@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 @Component({
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',
   styleUrls: ['./customer-detail.component.css']
 })
 export class CustomerDetailComponent {
-  constructor(private router: Router) {
+  modalRef: BsModalRef | undefined;
+
+  constructor(private router: Router,private modalService: BsModalService) {
     this.customerId = 0;
   }
   
@@ -31,12 +35,14 @@ export class CustomerDetailComponent {
   updateCustomer() {
      // Navigate to the update customer detail component with a parameter (example: customer ID)
      const customerId = 123; // Example customer ID
-     this.router.navigate(['/updateDetail', customerId]);
+     this.router.navigate(['/updateDetail'], { queryParams: { source: 'updateDetail' } });
+
     
   }
   
-  deleteCustomer() {
-    //delete logic
+  
+  deleteCustomer(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
     
 }

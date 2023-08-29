@@ -1,4 +1,11 @@
-<app-navbar></app-navbar>
+<ng-container *ngIf="isNavigatedFromCustomerDetail; else userNavbar">
+  <app-admin-dashboard></app-admin-dashboard>
+</ng-container>
+
+<ng-template #userNavbar>
+  <app-navbar></app-navbar>
+</ng-template>
+
 <div class="container py-5">
   <div class=" row d-flex justify-content-center align-items-center">
     <form class="col-8" [formGroup]="updateUserForm">
