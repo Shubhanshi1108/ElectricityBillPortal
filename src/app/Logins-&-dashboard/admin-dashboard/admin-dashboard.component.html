@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+  <!-- <a class="navbar-brand " href="#">Electricity Bill Portal</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/adminDashboard">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/customerDetail">Customer Detail</a>
+      </li>
+      <!-- <li class="nav-item active">
+          <a class="nav-link" routerLink="/billDetail">Bill Detail</a>
+        </li> -->
+      <!-- Bill Dropdown menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="billMenu" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Bill
+        </a>
+        <div class="dropdown-menu" aria-labelledby="billMenu">
+          <a class="dropdown-item" routerLink="/addBill">Add Bill</a>
+          <a class="dropdown-item" routerLink="/billDetail">View Bills</a>
+          <a class="dropdown-item" routerLink="/updateBill">Update Bill</a>
+        </div>
+      </li>
+
+      <!-- Complaint  -->
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/complainStatus">Complaint Status</a>
+      </li>
+    </ul>
+  </div>
+  <!-- Logout button -->
+  <div>
+    <button class="btn btn-danger" style="margin-right: 1em;" routerLink="/dashboard">Logout</button>
+  </div>
+</nav>

@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Router } from '@angular/router';
 
 function mobileNumberValidator(control: AbstractControl): { [key: string]: boolean } | null {
   const pattern = /^[0-9]{10}$/; // Match exactly 10 digits
