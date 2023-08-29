@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-update-bill',
@@ -6,5 +8,59 @@ import { Component } from '@angular/core';
   styleUrls: ['./update-bill.component.css']
 })
 export class UpdateBillComponent {
+  modalRef: BsModalRef | undefined;
+  addBillForm: FormGroup;
 
+  constructor(
+    private modalService: BsModalService,
+    private formBuilder: FormBuilder
+  ) {
+    this.addBillForm = this.formBuilder.group({
+      customerId: ['', [Validators.required, this.maxDigitsValidator(13)]],
+      dueAmount: ['', [Validators.required, Validators.min(0)]],
+      payAmount: ['', [Validators.required, Validators.min(0)]]
+    },{
+      validators: this.payableAmountValidator 
+    });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  closeModal() {
+    this.modalRef?.hide();
+  }
+  maxDigitsValidator(maxDigits: number) {
+    return (control: AbstractControl) => {
+      if (control.value && control.value.toString().length > maxDigits) {
+        return { maxLength: true };
+      }
+      return null;
+    };
+  }
+  payableAmountValidator(formGroup: FormGroup) {
+    const dueAmount = formGroup.get('dueAmount')?.value;
+    const payAmount = formGroup.get('payAmount')?.value;
+    
+    if (payAmount > dueAmount) {
+      formGroup.get('payAmount')?.setErrors({ greaterThanDue: true });
+    } else {
+      formGroup.get('payAmount')?.setErrors(null);
+    }
+  }
+
+  get customerId() {
+    return this.addBillForm.get('customerId');
+  }
+
+  get dueAmount() {
+    return this.addBillForm.get('dueAmount');
+  }
+
+  get payAmount() {
+    return this.addBillForm.get('payAmount');
+  }
 }
+
+

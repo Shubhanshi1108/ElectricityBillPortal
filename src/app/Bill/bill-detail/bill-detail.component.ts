@@ -1,5 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bill-detail',
@@ -8,24 +10,40 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class BillDetailComponent {
   modalRef: BsModalRef | undefined;
-  customerID: number | undefined; // To store the entered bill ID
-  customerDetails: any[] = []; // To store fetched customer details
+  customerId: number | undefined;
+  customerBill: any[] = [];
+  billForm: FormGroup;
+  isButtonDisabled: boolean = true;
 
-  constructor(private modalService: BsModalService) {}
-
-  getBillDetail() {
-    // Implement your logic here to fetch all the bills of that particular customer
-    // For example:
-    
+  constructor(private modalService: BsModalService, private formBuilder: FormBuilder , private router:Router) {
+    this.billForm = this.formBuilder.group({
+      customerId: ['', [Validators.required]]
+    });
   }
 
-  deleteBill(customer: any) {
-    // Implement your logic here to delete the customer
-    // Show the modal
-    this.modalRef = this.modalService.show(customer, { class: 'modal-md' });
+  fetchCustomerBills() {
+    this.customerBill = []; // Clear the existing bill details
+    if (this.billForm.valid) {
+      // Fetch customer bills based on the entered customer ID (this.customerId)
+      // For demonstration purposes, let's push some mock bill details
+      const mockBill = {
+        id: 123,
+        payableAmt: 400,
+        dueAmt: 200
+      };
+      this.customerBill.push(mockBill);
+    }
   }
 
   updateBill() {
-    // Implement your logic for updating the customer
+     // Navigate to the update customer detail component with a parameter (example: customer ID)
+     const customerId = 123; // Example customer ID
+     this.router.navigate(['/updateBill']);
+    // Implement your update logic here
   }
+
+  deleteBill(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
 }
