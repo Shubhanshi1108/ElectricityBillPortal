@@ -8,7 +8,7 @@ export interface Complaint {
     consNumber: string;
     pblmDes: string;
     mobileNum: string;
-    address: string;
+    address: string;  
     status: string;
   }
   

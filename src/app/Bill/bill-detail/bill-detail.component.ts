@@ -1,44 +1,58 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Bill } from 'src/app/Model/bill.model';
+import { BillService } from 'src/app/Service/bill.service';
 
 @Component({
   selector: 'app-bill-detail',
   templateUrl: './bill-detail.component.html',
   styleUrls: ['./bill-detail.component.css']
 })
-export class BillDetailComponent {
+export class BillDetailComponent implements OnInit {
   modalRef: BsModalRef | undefined;
-  customerId: number | undefined;
-  customerBill: any[] = [];
   billForm: FormGroup;
-  isButtonDisabled: boolean = true;
+  billNum: number = 0;
+  billDetails: Bill[] = [];
 
-  constructor(private modalService: BsModalService, private formBuilder: FormBuilder , private router:Router) {
+  constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router, private billService: BillService) {
     this.billForm = this.formBuilder.group({
-      customerId: ['', [Validators.required]]
+      billNum: [''],
+      billID: ['', [Validators.required]]
     });
   }
+  ngOnInit() {
 
-  fetchCustomerBills() {
-    this.customerBill = []; // Clear the existing bill details
-    if (this.billForm.valid) {
-      // Fetch customer bills based on the entered customer ID (this.customerId)
-      // For demonstration purposes, let's push some mock bill details
-      const mockBill = {
-        id: 123,
-        payableAmt: 400,
-        dueAmt: 200
-      };
-      this.customerBill.push(mockBill);
-    }
   }
 
+  fetchBill() {
+    console.log('Fetching bill details...');
+    this.billNum = this.billForm.value.billNum;
+    this.billService.getBills().subscribe({
+      next: (data) => {
+        console.log('Data fetched:', data);
+        
+        // Log individual bill properties to verify their structure
+        data.forEach(bill => {
+          console.log('Bill ID:', bill.billNum);
+        });
+    
+        this.billDetails = data.filter(bill => bill.billNum === this.billNum);
+        console.log('Filtered bill details:', this.billDetails);
+      },
+      error: (error) => {
+        console.error('Error in fetching bill details:', error);
+      }
+    });
+    
+  }
+
+
   updateBill() {
-     // Navigate to the update customer detail component with a parameter (example: customer ID)
-     const customerId = 123; // Example customer ID
-     this.router.navigate(['/updateBill']);
+    // Navigate to the update customer detail component with a parameter (example: customer ID)
+    const billID = 123; // Example customer ID
+    this.router.navigate(['/updateBill']);
     // Implement your update logic here
   }
 

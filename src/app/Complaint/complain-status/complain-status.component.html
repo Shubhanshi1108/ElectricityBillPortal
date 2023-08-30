@@ -1,8 +1,6 @@
-<!-- <ng-container *ngIf="isNavigatedFromAdmin; else userNavbar">
-    <app-admin-dashboard></app-admin-dashboard>
-  </ng-container> -->
-  
-  <ng-template #userNavbar>
+
+  <app-admin-dashboard></app-admin-dashboard>
+  <ng-template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
         <a class="navbar-brand ml-2" routerLink="/userDashboard">Electricity Bill Portal</a>
     
@@ -35,7 +33,7 @@
 
 <div class="container py-5">
     <div class=" row d-flex justify-content-center align-items-center">
-        <form class="col-8">
+        <form class="col-8" [formGroup]="complainForm">
 
             <div class="text-center mb-5">
                 <h2>Complain Status</h2>
