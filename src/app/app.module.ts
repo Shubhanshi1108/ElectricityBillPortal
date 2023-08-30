@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './Logins-&-dashboard/dashboard/dashboard.component';
 import { SignupComponent } from './Logins-&-dashboard/signup/signup.component';
 import { AdminLoginComponent } from './Logins-&-dashboard/admin-login/admin-login.component';
@@ -49,6 +50,7 @@ import { UpdateBillComponent } from './Bill/update-bill/update-bill.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule ,
     ModalModule.forRoot(),  

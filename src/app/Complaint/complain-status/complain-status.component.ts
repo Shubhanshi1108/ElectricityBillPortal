@@ -1,39 +1,40 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Complaint } from 'src/app/Model/complaint.model';
+import { ComplaintsService } from 'src/app/Service/compliants.service';
+import { FormBuilder, FormGroup } from '@angular/forms'; // Import FormGroup
 
 @Component({
   selector: 'app-complain-status',
   templateUrl: './complain-status.component.html',
   styleUrls: ['./complain-status.component.css']
 })
-export class ComplainStatusComponent {
-  complainForm: FormGroup;
-  complainDetails: any[] = [];
+export class ComplainStatusComponent implements OnInit {
+  complainDetails: Complaint[] = [];
+  complainNum: number = 0;
+  complainForm: FormGroup; // Define form group
 
-  constructor(private fb: FormBuilder) {
-    this.complainForm = this.fb.group({
-      complainNum: ['', Validators.required]
-    });
-  }
 
-  getComplainStatus() {
-    // Replace this with your logic to fetch complaint details based on the complaint number
-    // For this example, I'm just simulating data
-    const mockComplaintData = {
-      complaintNumber: 123,
-      complaintType: 'Bill Related',
-      category: 'Bill Related',
-      contactPerson: 'John Doe',
-      landmark: 'Near ABC Street',
-      consNumber: '1234567890123',
-      pblmDes: 'Frequent power cuts',
-      mobileNum: '1234567890',
-      address: '123 Main St, City',
-      status:'Not Resolved'
-
-    };
-
-    // Add the fetched complaint details to the array
-    this.complainDetails.push(mockComplaintData);
-  }
+  constructor(private complaintsService: ComplaintsService,
+    private formBuilder: FormBuilder // Inject FormBuilder
+    ) {
+      this.complainForm = this.formBuilder.group({
+        complainNum: [''] });
+    }
+    ngOnInit() {
+      // This method will be called when the component is initialized.
+      // You can perform any initialization here.
+    }
+    getComplainStatus() {
+      this.complainNum = this.complainForm.value.complainNum; // Get complaintNum from form
+  
+      console.log('Getting complain status...');
+      this.complaintsService.getComplaints().subscribe({
+        next: (data) => {
+          this.complainDetails = data.filter(complain => complain.complaintNumber === this.complainNum);
+        },
+        error: (error) => {
+          console.error('Error fetching complaints:', error);
+        }
+      });
+    }      
 }

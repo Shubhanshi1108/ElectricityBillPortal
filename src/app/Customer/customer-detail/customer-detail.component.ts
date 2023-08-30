@@ -14,8 +14,6 @@ export class CustomerDetailComponent {
     this.customerId = 0;
   }
   
-  
-
   customerId: number;
   customerDetails: any[] = []; 
 

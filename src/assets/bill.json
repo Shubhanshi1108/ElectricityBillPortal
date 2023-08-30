@@ -1,0 +1,21 @@
+[
+    {
+      "billNum":1,
+      "customerId":1234,
+      "payableAmt":300,
+      "dueAmt":200
+    },
+    {
+        "billNum":2,
+        "customerId":1274,
+        "payableAmt":400,
+        "dueAmt":220
+    },
+    {
+        "billNum":3,
+        "customerId":8974,
+        "payableAmt":480,
+        "dueAmt":356
+    }
+  ]
+  
